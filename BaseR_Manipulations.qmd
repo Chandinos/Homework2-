@@ -1,0 +1,128 @@
+---
+title: "Programming in Base R"
+format: html
+editor: visual
+---
+
+## Task 1: Basic Vector Practice
+
+*Experiment 1. Assigning Subject Values*
+
+```{r}
+pre <- c(120, 151, 125, 126, 115, 132, 132, 129, 134, 139, 127, 122, 127, 135, 133, 128, 147, 138, 140, 132)
+
+post <- c(127, 145, 135, 122, 115, 122, 123, 126, 126, 129, 132, 146, 120, 114, 121, 120, 128, 120, 133, 115)
+
+names(pre) <- paste("Subject", 
+                    1:20, sep = "_")
+names(post) <- paste("Subject", 1:20, sep = "_")
+```
+
+*Difference in blood pressure for each subject*
+
+```{r}
+BP_diff <- pre - post
+```
+
+*Average difference in blood pressure for all subjects*
+
+```{r}
+mean(BP_diff)
+```
+
+*Patients who experienced a decrease in blood pressure (positions)*
+
+```{r}
+which(BP_diff > 0)
+```
+
+*Patients who experienced a decrease in blood pressure (values)*
+
+```{r}
+BP_diff[BP_diff > 0]
+```
+
+*Average difference in blood pressure (only for patients who experienced a decrease in blood pressure)*
+
+```{r}
+mean(BP_diff[BP_diff > 0])
+```
+
+## Task 2: Basic Data Frame Practice
+
+*Creating Data Frame*
+
+```{r}
+bp_df <- data.frame(
+          Patient = paste("Subject", 1:20, sep = "_"),
+          pre_bp = pre,
+          post_bp = post, 
+          diff_bp = BP_diff, row.names=NULL)
+
+```
+
+*Rows where diff_bp column is negative*
+
+```{r}
+subset(bp_df, diff_bp > 0) 
+```
+
+*Adding a new column to the data frame. Conditional on post_bp (TRUE if \< 120, FALSE if not)*
+
+```{r}
+bp_df$'PostBP<120' <- bp_df$post_bp < 120
+```
+
+*Printing Data Frame*
+
+```{r}
+knitr::kable(bp_df)
+```
+
+## Task 3: List Practice
+
+*Experiment 2. Assigning Subject Values.*
+
+```{r}
+Placebo_Pre <- c( 138, 135, 147, 117, 152, 134, 114, 121, 131, 130)
+
+Placebo_Post <- c(105, 136, 123, 130, 134, 143, 135, 139, 120, 124)
+
+
+names(Placebo_Pre) <- paste("Subject", 
+                    1:10, sep = "_")
+names(Placebo_Post) <- paste("Subject", 1:10, sep = "_")
+
+bp_pl_diff <- Placebo_Pre - Placebo_Post
+```
+
+*Creating Data Frame (Placebo)*
+
+```{r}
+bp_pl_df <- data.frame(
+          Patient = paste("Subject", 1:10, sep = "_"),
+          pre_bp = Placebo_Pre,
+          post_bp = Placebo_Post, 
+          diff_bp = bp_pl_diff, row.names=NULL)
+bp_pl_df$'PostBP<120' <- bp_pl_df$post_bp < 120
+```
+
+*Storing the two Data Frames as a list*
+
+```{r}
+experiment <- list(treatment = bp_df, placebo = bp_pl_df)
+```
+
+*Accessing first list element using three different types of syntax*
+
+```{r}
+experiment[1]
+experiment[[1]]
+experiment$treatment
+```
+
+*One line of code to access pre_bp column of the placebo data frame*
+
+```{r}
+experiment$placebo$pre_bp
+```
