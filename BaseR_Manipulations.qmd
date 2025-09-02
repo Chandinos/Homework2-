@@ -64,7 +64,7 @@ bp_df <- data.frame(
 *Rows where diff_bp column is negative*
 
 ```{r}
-subset(bp_df, diff_bp > 0) 
+subset(bp_df, diff_bp < 0) 
 ```
 
 *Adding a new column to the data frame. Conditional on post_bp (TRUE if \< 120, FALSE if not)*

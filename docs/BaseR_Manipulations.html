@@ -200,24 +200,13 @@ Subject_20
 </div>
 <p><em>Rows where diff_bp column is negative</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(bp_df, diff_bp <span class="sc">&gt;</span> <span class="dv">0</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(bp_df, diff_bp <span class="sc">&lt;</span> <span class="dv">0</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Patient pre_bp post_bp diff_bp
-2   Subject_2    151     145       6
-4   Subject_4    126     122       4
-6   Subject_6    132     122      10
-7   Subject_7    132     123       9
-8   Subject_8    129     126       3
-9   Subject_9    134     126       8
-10 Subject_10    139     129      10
-13 Subject_13    127     120       7
-14 Subject_14    135     114      21
-15 Subject_15    133     121      12
-16 Subject_16    128     120       8
-17 Subject_17    147     128      19
-18 Subject_18    138     120      18
-19 Subject_19    140     133       7
-20 Subject_20    132     115      17</code></pre>
+1   Subject_1    120     127      -7
+3   Subject_3    125     135     -10
+11 Subject_11    127     132      -5
+12 Subject_12    122     146     -24</code></pre>
 </div>
 </div>
 <p><em>Adding a new column to the data frame. Conditional on post_bp (TRUE if &lt; 120, FALSE if not)</em></p>
